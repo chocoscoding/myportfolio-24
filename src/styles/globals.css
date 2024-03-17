@@ -25,14 +25,9 @@ body {
   /* height: 135px; */
 }
 
-.nameSection .firstName div:hover,
-.nameSection .lastName div:hover {
-  color: #28a92b;
-}
-
 .nameSpan {
-  font-weight: 400;
-  font-size: 9.5rem;
+  font-weight: 500;
+  font-size: 14rem;
   line-height: 100%;
 }
 .lastName {

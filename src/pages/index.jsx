@@ -33,7 +33,7 @@ export default function Home() {
           <p className="nameSpan nameSpan1">Oyeti</p>
         </div>
         <div className="lastName">
-          <p className="nameSpan nameSpan2">Oluwatimileyin</p>
+          <p className="nameSpan nameSpan2">Timileyin</p>
         </div>
       </section>
     </main>
