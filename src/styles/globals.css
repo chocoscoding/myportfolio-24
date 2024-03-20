@@ -16,7 +16,7 @@ body {
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .nameSection .firstName,
@@ -30,11 +30,16 @@ body {
   font-size: 14rem;
   line-height: 100%;
 }
+.firstName {
+  margin-left: 8%;
+  align-self: flex-start;
+}
+/* border-top: 1px solid rgba(255, 255, 255, 0.116); */
 .lastName {
   align-self: flex-end;
   padding-right: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.116);
   margin-top: 1%;
+  margin-right: 8%;
   padding-top: 1%;
 }
 .box {
