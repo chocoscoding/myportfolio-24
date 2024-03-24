@@ -25,7 +25,7 @@ const myFont = localFont({
       style: 'normal',
     },
     {
-      path: '../ff/Semi-bold.otf',
+      path: '../ff/Semi-Bold.otf',
       weight: '800',
       style: 'normal',
     },
