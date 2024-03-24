@@ -7,40 +7,49 @@
 body {
   width: 100%;
   height: 100%;
-  background-color: #0c0c0b;
+  background-color: #010101;
 }
 
 .nameSection {
   color: rgb(195, 195, 195);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 100vh;
+  padding-top: 5%;
   /* width: 100%; */
 }
 
-.nameSection .firstName,
-.lastName {
+.nameSection .first,
+.second,
+.third {
   overflow: hidden;
+  /* border: 1px solid red; */
+
   /* height: 135px; */
 }
 
 .nameSpan {
   font-weight: 500;
-  font-size: 14rem;
+  font-size: 11rem;
   line-height: 100%;
 }
-.firstName {
+.first {
   margin-left: 8%;
-  align-self: flex-start;
+  align-self: center;
 }
 /* border-top: 1px solid rgba(255, 255, 255, 0.116); */
-.lastName {
-  align-self: flex-end;
+.second {
+  align-self: flex-start;
   padding-right: 10px;
+  /* padding-top: 1%; */
   margin-top: 1%;
-  margin-right: 8%;
-  padding-top: 1%;
+  margin-left: 1.5%;
+}
+.third {
+  /* padding-top: 1%; */
+  margin-top: 1%;
+  align-self: flex-end;
+  margin-right: 1.5%;
 }
 .box {
   width: 100px;
@@ -64,4 +73,11 @@ body {
 }
 .text-heading {
   width: 900px;
+}
+
+.noise {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 4% !important;
 }
