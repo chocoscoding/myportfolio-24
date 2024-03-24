@@ -5,32 +5,32 @@ import localFont from 'next/font/local';
 const myFont = localFont({
   src: [
     {
-      path: '../../public/fonts/Light.otf',
+      path: '../ff/Light.otf',
       weight: '200',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Regular.otf',
+      path: '../ff/Regular.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Medium.otf',
+      path: '../ff/Medium.otf',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Bold.otf',
+      path: '../ff/Bold.otf',
       weight: '600',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Semi-bold.otf',
+      path: '../ff/Semi-bold.otf',
       weight: '800',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Book.otf',
+      path: '../ff/Book.otf',
       weight: '900',
       style: 'normal',
     },
