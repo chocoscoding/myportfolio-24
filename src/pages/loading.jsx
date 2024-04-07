@@ -20,44 +20,14 @@ export default function Home() {
       textTimeline3 = new gsap.timeline({}),
       textTimeline4 = new gsap.timeline({}),
       textTimeline5 = new gsap.timeline({});
-
-    const circleTimeline = new gsap.timeline();
-    let text = new SplitText(" .nameSpan1", { type: "chars" });
-    let text2 = new SplitText(" .nameSpan2", { type: "chars" });
     let text3 = new SplitText(" .nicc", { type: "chars" });
-    let nickname = new SplitText(".nick", { type: "words" });
-    let chars = text.chars;
-    let chars2 = text2.chars;
+
     let chars3 = text3.chars;
-
-    let nicknameChars = nickname.words;
-    gsap.from(nicknameChars, {
-      xPercent: -300,
-      stagger: 0.05,
-      ease: "ease-in-out",
-      duration: 1.5,
-    });
-    gsap.from(chars, {
-      yPercent: -300,
-      stagger: 0.05,
-      ease: "back-out",
-      duration: 0.4,
-      delay: 1.4,
-    });
-    gsap.from(chars2, {
-      yPercent: -120,
-      stagger: 0.05,
-      ease: "back-out",
-      delay: 1.2,
-      duration: 0.4,
-    });
-
-    ////
 
     gsap.fromTo(
       "body",
       {
-        backgroundColor: "#444444",
+        backgroundColor: "#484848",
       },
       {
         backgroundColor: "#010101",
@@ -74,13 +44,14 @@ export default function Home() {
           x: 0,
         },
         {
-          duration: 0.7,
-          y: 52,
+          duration: 0.6,
+          y: 62,
           ease: "power1.in",
-          delay: 0.9,
+          delay: 0.8,
         }
       )
       .to(names[0], { y: 30, delay: 0.25, opacity: 20 });
+
     textTimeline2
       .fromTo(
         names[1],
@@ -88,13 +59,14 @@ export default function Home() {
           y: -400,
         },
         {
-          delay: 0.7,
-          duration: 0.7,
+          delay: 0.6,
+          duration: 0.6,
           y: 62,
           ease: "power1.in",
         }
       )
       .to(names[1], { y: 30, delay: 0.35, opacity: 40 });
+
     textTimeline3
       .fromTo(
         names[2],
@@ -102,13 +74,14 @@ export default function Home() {
           y: -400,
         },
         {
-          delay: 0.5,
-          duration: 0.7,
+          delay: 0.4,
+          duration: 0.6,
           y: 72,
           ease: "power1.in",
         }
       )
       .to(names[2], { y: 30, delay: 0.4, opacity: 60 });
+
     textTimeline4
       .fromTo(
         names[3],
@@ -117,12 +90,13 @@ export default function Home() {
         },
         {
           delay: 0.2,
-          duration: 0.7,
-          y: 82,
+          duration: 0.6,
+          y: 72,
           ease: "power1.in",
         }
       )
       .to(names[3], { y: 30, delay: 0.4, opacity: 80 });
+
     textTimeline5
       .fromTo(
         names[4],
@@ -136,7 +110,7 @@ export default function Home() {
         }
       )
       .to(names[4], { y: 30, delay: 1.35, ease: "power.in", color: "#e6e6e6" })
-      .to(".nicc", { position: "relative", onComplete: () => deleteNodes({ array: names, exclude: [4] }) })
+      .to(".nicc", { position: "relative", duration: 0.1, onComplete: () => deleteNodes({ array: names, exclude: [4] }) })
       .to("first", { display: "block" })
       .to(chars3, {
         onanimationstart: () => {
@@ -160,27 +134,17 @@ export default function Home() {
     <main>
       <section className="loadingSection">
         <div className="first">
-          <p className="nameSpan nickname">CHOCOS</p>
-          <p className="nameSpan nickname">CHOCOS</p>
-
-          <p className="nameSpan nickname">CHOCOS</p>
-          <p className="nameSpan nickname">CHOCOS</p>
-          <p className="nameSpan nickname nicc">CHOCOS</p>
-          {/* <div className="circle"></div> */}
+          {Array(5)
+            .fill(0)
+            .map((_, i) => (
+              <p
+                className={`nameSpan nickname${i === 4 ? " nicc" : ""}`}
+                key={`loading_nickname${i}`}>
+                CHOCOS
+              </p>
+            ))}
         </div>
       </section>
-
-      {/* <section className="nameSection">
-        <div className="first">
-          <p className="nameSpan nickname">CHOCOS</p>
-        </div>
-        <div className="second">
-          <p className="nameSpan nameSpan1">SOFTWARE</p>
-        </div>
-        <div className="third">
-          <p className="nameSpan nameSpan2">ENGINEER</p>
-        </div>
-      </section> */}
     </main>
   );
 }
