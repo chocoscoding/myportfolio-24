@@ -2,133 +2,133 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitText from "gsap/dist/SplitText";
 import GSDevTools from "gsap/dist/GSDevTools";
+import { useRef, useState } from "react";
 gsap.registerPlugin(SplitText, GSDevTools);
 
 export default function Home() {
-  const deleteNodes = ({ exclude = [], array }) => {
-    array.forEach((ele, index) => {
-      if (!exclude.includes(index)) {
-        ele.remove();
-      }
-    });
-  };
+  const loadingList = [0, 22, 40, 66, 80, 100];
+  const [isLoading, setIsLoading] = useState(true);
   useGSAP(() => {
+    gsap.set([".counter_1", ".counter_2", ".counter_3", ".counter_4", ".counter_5"], {
+      y: -100,
+      x: 25,
+      autoAlpha: 0,
+    });
+    gsap.set(".counter_0", { y: "center", x: 25, autoAlpha: 1 });
+
+    const LoadProgress = (progress) => {
+      gsap.to(`.counter_${progress}`, {
+        autoAlpha: 1,
+        y: "center",
+        x: 25,
+        ease: "power1.out(3)",
+      });
+      gsap.to(`.counter_${progress - 1}`, {
+        autoAlpha: 1,
+        y: 300,
+      });
+      if (loadingList.length === progress) {
+        //end loading animation and show intro
+        gsap.to(`.counter-mask`, {
+          display: "none",
+        });
+        setTimeout(() => {
+          setIsLoading(false);
+          document.querySelector(".counter-mask")?.remove();
+        }, 400);
+      }
+    };
+
+    setTimeout(() => {
+      LoadProgress(0);
+    }, 1000);
+    setTimeout(() => {
+      LoadProgress(1);
+    }, 2000);
+    setTimeout(() => {
+      LoadProgress(2);
+    }, 3000);
+    setTimeout(() => {
+      LoadProgress(3);
+    }, 4000);
+    setTimeout(() => {
+      LoadProgress(4);
+    }, 5000);
+    setTimeout(() => {
+      LoadProgress(5);
+    }, 6000);
+    setTimeout(() => {
+      LoadProgress(6);
+    }, 7000);
+
     const names = gsap.utils.toArray(".nickname");
 
-    const textTimeline1 = new gsap.timeline({}),
-      textTimeline2 = new gsap.timeline({}),
-      textTimeline3 = new gsap.timeline({}),
-      textTimeline4 = new gsap.timeline({}),
-      textTimeline5 = new gsap.timeline({});
+    console.log(isLoading);
+    const textTimeline1 = new gsap.timeline({
+        paused: isLoading,
+      }),
+      textTimeline2 = new gsap.timeline({
+        paused: isLoading,
+      });
     let text3 = new SplitText(" .nicc", { type: "chars" });
 
     let chars3 = text3.chars;
-
-    gsap.fromTo(
-      "body",
-      {
-        backgroundColor: "#484848",
-      },
-      {
-        backgroundColor: "#010101",
-        delay: 4.8,
-        duration: 0.5,
-      }
-    );
+    //replace all these with a stagger animation
 
     textTimeline1
       .fromTo(
-        names[0],
+        [names[3], names[2], names[1], names[0]],
         {
+          autoAlpha: 0,
           y: -400,
           x: 0,
+          stagger: 0.12,
         },
         {
-          duration: 0.6,
-          y: 62,
-          ease: "power1.in",
-          delay: 0.8,
+          autoAlpha: 1,
+          delay: 0.75,
+          duration: 1,
+          y: 10,
+          ease: "back.out(2.5)",
+          stagger: 0.12,
         }
       )
-      .to(names[0], { y: 30, delay: 0.25, opacity: 20 });
+      .fromTo([names[3], names[2], names[1], names[0]], { opacity: 20 }, { display: "none" });
 
     textTimeline2
-      .fromTo(
-        names[1],
-        {
-          y: -400,
-        },
-        {
-          delay: 0.6,
-          duration: 0.6,
-          y: 62,
-          ease: "power1.in",
-        }
-      )
-      .to(names[1], { y: 30, delay: 0.35, opacity: 40 });
-
-    textTimeline3
-      .fromTo(
-        names[2],
-        {
-          y: -400,
-        },
-        {
-          delay: 0.4,
-          duration: 0.6,
-          y: 72,
-          ease: "power1.in",
-        }
-      )
-      .to(names[2], { y: 30, delay: 0.4, opacity: 60 });
-
-    textTimeline4
-      .fromTo(
-        names[3],
-        {
-          y: -400,
-        },
-        {
-          delay: 0.2,
-          duration: 0.6,
-          y: 72,
-          ease: "power1.in",
-        }
-      )
-      .to(names[3], { y: 30, delay: 0.4, opacity: 80 });
-
-    textTimeline5
       .fromTo(
         names[4],
         {
           y: -400,
+          autoAlpha: 0,
         },
         {
-          duration: 0.5,
-          y: 30,
+          autoAlpha: 1,
+          duration: 0.8,
+          y: 10,
           ease: "power1.in",
         }
       )
-      .to(names[4], { y: 30, delay: 1.35, ease: "power.in", color: "#e6e6e6" })
-      .to(".nicc", { position: "relative", duration: 0.1, onComplete: () => deleteNodes({ array: names, exclude: [4] }) })
-      .to("first", { display: "block" })
+      .to(names[4], { y: 10, delay: 0.15, ease: "power1.in", duration: 1, color: "#e6e6e6" })
+      .to(".nicc", { position: "relative", duration: 0.7 })
       .to(chars3, {
-        onanimationstart: () => {
+        onStart: () => {
+          chars3[2].classList.add("letter");
           chars3.forEach((ele, i) => (i === 2 ? null : (ele.style.zIndex = -1)));
         },
+
         scale: 0.8,
         margin: "0 -3%",
       })
       .to(chars3[2], {
-        onanimationstart: () => {
-          chars3[2].classList.add("letter");
-        },
+        delay: -0.3,
         zIndex: 3,
-        scale: 20 + 20 * (window.innerWidth * window.innerHeight * (2 / 10000000)),
-        duration: 1,
+        scale: "60vh 60vw",
+        duration: 1.5,
         ease: "power1.in",
-      });
-  }, []);
+      })
+      .to("loadingSection", { display: "none" });
+  }, [isLoading]);
 
   return (
     <main>
@@ -143,6 +143,18 @@ export default function Home() {
                 CHOCOS
               </p>
             ))}
+        </div>
+        <div className="counter-mask">
+          <div className="container">
+            {loadingList.map((ele, i) => (
+              <h1
+                key={"counter_" + i}
+                className={`counter counter_${i}`}>
+                {ele}
+                <span>%</span>
+              </h1>
+            ))}
+          </div>
         </div>
       </section>
     </main>
