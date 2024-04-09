@@ -4,7 +4,7 @@ gsap.registerPlugin(SplitText);
 import React, { useRef, useState } from "react";
 import { TbWorld } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
-
+import Link from "next/link";
 const Navbar = () => {
   let mm = gsap.matchMedia();
   const [navOpen, setNavOpen] = useState(false);
@@ -58,7 +58,7 @@ const Navbar = () => {
         from: "start",
         ease: "power1.out",
       },
-      duration: 0.4,
+      duration: 0.3,
       delay: 0.1,
     });
     gsap.to(chars2, {
@@ -96,9 +96,15 @@ const Navbar = () => {
         from: "end",
         ease: "power1.in",
       },
-      duration: 0.4,
+      duration: 0.3,
     });
   };
+
+  const menuItems = [
+    { label: "Projects", href: "/projects" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+  ];
 
   return (
     <nav
@@ -114,24 +120,19 @@ const Navbar = () => {
         </div>
 
         <ul>
-          <li
-            onMouseLeave={mouseLeaveAnimation}
-            onMouseEnter={mouseEnterAnimation}>
-            <p>Projects</p>
-            <p>Projects</p>
-          </li>
-          <li
-            onMouseLeave={mouseLeaveAnimation}
-            onMouseEnter={mouseEnterAnimation}>
-            <p>About</p>
-            <p>About</p>
-          </li>
-          <li
-            onMouseLeave={mouseLeaveAnimation}
-            onMouseEnter={mouseEnterAnimation}>
-            <p>Contact</p>
-            <p>Contact</p>
-          </li>
+          {menuItems.map((item, index) => (
+            <Link
+              key={"navLink" + index}
+              href={item.href}>
+              <li
+                key={"navLi" + index}
+                onMouseLeave={mouseLeaveAnimation}
+                onMouseEnter={mouseEnterAnimation}>
+                <p>{item.label}</p>
+                <p>{item.label}</p>
+              </li>
+            </Link>
+          ))}
         </ul>
 
         <hr />

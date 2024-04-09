@@ -5,9 +5,12 @@ import GSDevTools from "gsap/dist/GSDevTools";
 import { useRef, useState } from "react";
 gsap.registerPlugin(SplitText, GSDevTools);
 
-export default function Home() {
+export default function Transition() {
   const loadingList = [0, 22, 40, 66, 80, 100];
   const [isLoading, setIsLoading] = useState(true);
+  const loadingSectionRef = useRef(null);
+  const removeLoadingSection = () => loadingSectionRef.current?.remove();
+
   useGSAP(() => {
     gsap.set([".counter_1", ".counter_2", ".counter_3", ".counter_4", ".counter_5"], {
       y: -100,
@@ -41,29 +44,28 @@ export default function Home() {
 
     setTimeout(() => {
       LoadProgress(0);
-    }, 1000);
+    }, 100);
     setTimeout(() => {
       LoadProgress(1);
-    }, 2000);
+    }, 200);
     setTimeout(() => {
       LoadProgress(2);
-    }, 3000);
+    }, 300);
     setTimeout(() => {
       LoadProgress(3);
-    }, 4000);
+    }, 400);
     setTimeout(() => {
       LoadProgress(4);
-    }, 5000);
+    }, 500);
     setTimeout(() => {
       LoadProgress(5);
-    }, 6000);
+    }, 600);
     setTimeout(() => {
       LoadProgress(6);
-    }, 7000);
+    }, 700);
 
     const names = gsap.utils.toArray(".nickname");
 
-    console.log(isLoading);
     const textTimeline1 = new gsap.timeline({
         paused: isLoading,
       }),
@@ -123,16 +125,19 @@ export default function Home() {
       .to(chars3[2], {
         delay: -0.3,
         zIndex: 13,
-        scale: "60vh 60vw",
+        scale: "50vw 50vh",
         duration: 1.5,
         ease: "power1.in",
       })
-      .to("loadingSection", { display: "none" });
+      .to(".loadingSection", { opacity: 0 }, "-=.5")
+      .then(removeLoadingSection);
   }, [isLoading]);
 
   return (
-    <main>
-      <section className="loadingSection">
+    <>
+      <section
+        className="loadingSection"
+        ref={loadingSectionRef}>
         <div className="first">
           {Array(5)
             .fill(0)
@@ -157,6 +162,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }
