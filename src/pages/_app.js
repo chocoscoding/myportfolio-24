@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
 import localFont from 'next/font/local';
 import Image from "next/image";
@@ -45,6 +46,7 @@ const myFont = localFont({
 export default function App({ Component, pageProps }) {
   return (<main className={myFont.className}>
     <Image src={`/noise.jpg`} alt="noise bg" className="noise" fill />
+    <Navbar />
     <Component {...pageProps} />
   </main>
   );

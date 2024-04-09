@@ -47,6 +47,17 @@ export default function Home() {
           <p className="nameSpan nameSpan2">ENGINEER</p>
         </div>
       </section>
+      <section className="nameSection">
+        <div className="first">
+          <p className="nameSpan nickname">CHOCOS</p>
+        </div>
+        <div className="second">
+          <p className="nameSpan nameSpan1">SOFTWARE</p>
+        </div>
+        <div className="third">
+          <p className="nameSpan nameSpan2">ENGINEER</p>
+        </div>
+      </section>
     </main>
   );
 }

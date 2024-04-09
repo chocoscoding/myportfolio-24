@@ -109,7 +109,7 @@ export default function Home() {
           ease: "power1.in",
         }
       )
-      .to(names[4], { y: 10, delay: 0.15, ease: "power1.in", duration: 1, color: "#e6e6e6" })
+      .to(names[4], { y: 10, delay: 0.15, ease: "power1.in", duration: 1, color: "#dad6ca" })
       .to(".nicc", { position: "relative", duration: 0.7 })
       .to(chars3, {
         onStart: () => {
@@ -122,7 +122,7 @@ export default function Home() {
       })
       .to(chars3[2], {
         delay: -0.3,
-        zIndex: 3,
+        zIndex: 13,
         scale: "60vh 60vw",
         duration: 1.5,
         ease: "power1.in",
