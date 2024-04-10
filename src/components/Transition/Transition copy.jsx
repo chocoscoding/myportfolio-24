@@ -118,49 +118,26 @@ export default function Transition() {
         }
       )
       .fromTo(".nicc", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1, color: "#ffffff" })
-      .to([chars3[0], chars3[1], chars3[3], chars3[4], chars3[5]], {
+      .to(chars3, {
         onStart: () => {
           chars3[2].classList.add("letter");
           chars3.forEach((ele, i) => (i === 2 ? null : (ele.style.zIndex = -1)));
         },
-        scale: 0.75,
+        scale: 0.8,
+        margin: "3%",
         delay: "0.2",
         duration: 1.3,
         each: "power1.in",
       })
-      .to(chars3[0], {
-        x: "350",
-        duration: 1,
+      .to(chars3[2], {
+        delay: -1.25,
+        zIndex: 13,
+        scale: "49vw 49vh",
+        duration: 2,
         ease: "power1.in(2)",
       })
-      .to(chars3[1], {
-        x: "250",
-        duration: 1,
-        ease: "power1.in(2)",
-      })
-      .to(chars3[4], {
-        x: "-200",
-        duration: 1,
-        ease: "power1.in(2)",
-      })
-      .to(
-        chars3[5],
-        {
-          x: "-550",
-          duration: 1,
-          ease: "power1.in(2)",
-        },
-        "-=2.9"
-      );
-    // .to(chars3[2], {
-    //   delay: -1.25,
-    //   zIndex: 13,
-    //   scale: "49vw 49vh",
-    //   duration: 2,
-    //   ease: "power1.in(2)",
-    // })
-    // .to(".loadingSection", { opacity: 0 }, "-=.5")
-    // .then(removeLoadingSection);
+      .to(".loadingSection", { opacity: 0 }, "-=.5")
+      .then(removeLoadingSection);
   }, [isLoading]);
 
   return (

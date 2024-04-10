@@ -36,7 +36,7 @@ body {
 }
 
 .loadingSection {
-  color: #dad6ca;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,13 +47,13 @@ body {
   top: 0;
   left: 0;
   overflow: hidden;
-  background-color: #484848;
+  background-color: #00c35e;
   z-index: 10;
 }
 
 .nameSpan {
   font-weight: 500;
-  font-size: 10rem;
+  font-size: 16rem;
   line-height: 100%;
 }
 
@@ -100,26 +100,13 @@ body {
 
 .nickname {
   position: absolute;
-  visibility: hidden;
 }
 .nickname:nth-child(1) {
-  color: yellow;
-}
-.nickname:nth-child(2) {
-  color: green;
-}
-.nickname:nth-child(3) {
-  color: blue;
-}
-.nickname:nth-child(4) {
-  color: red;
-}
-.nickname:nth-child(5) {
   z-index: 12;
   position: relative;
   color: transparent;
   background-color: transparent;
-  -webkit-text-stroke: 1px #dad6ca;
+  -webkit-text-stroke: 1px #ffffff;
 }
 
 .second {
@@ -215,6 +202,10 @@ nav .wrapper {
   padding-left: 2.5%;
   padding-right: 2.5%;
 }
+nav .wrapper a {
+  text-decoration: none;
+  color: #dad6ca;
+}
 nav .wrapper .chocos {
   font-size: 1.1rem;
 }
@@ -228,10 +219,6 @@ nav .wrapper ul {
   list-style-type: none;
   display: flex;
   gap: 30px;
-}
-nav .wrapper ul a {
-  text-decoration: none;
-  color: #dad6ca;
 }
 nav .wrapper ul li {
   cursor: pointer;

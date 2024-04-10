@@ -6,7 +6,6 @@ import { TbWorld } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
 const Navbar = () => {
-  let mm = gsap.matchMedia();
   const [navOpen, setNavOpen] = useState(false);
   const navRef = useRef(null);
   const openNavAnimation = () => {
@@ -111,7 +110,9 @@ const Navbar = () => {
       className={navOpen ? "navOpen" : ""}
       ref={navRef}>
       <div className="wrapper">
-        <text className="chocos">CHOCOS</text>
+        <Link href={"/"}>
+          <text className="chocos">CHOCOS</text>
+        </Link>
 
         <div className="location">
           {/* globe icon */}
