@@ -5,6 +5,19 @@ import React, { useRef, useState } from "react";
 import { TbWorld } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
+import Image from "next/image";
+import localFont from "next/font/local";
+
+const myFont = localFont({
+  src: [
+    {
+      path: "../fonts/ZT/ztravigsfen-alternate.otf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+});
+
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const navRef = useRef(null);
@@ -61,7 +74,7 @@ const Navbar = () => {
       delay: 0.1,
     });
     gsap.to(chars2, {
-      y: 22,
+      yPercent: 100,
       stagger: {
         each: 0.05,
         from: "start",
@@ -79,7 +92,7 @@ const Navbar = () => {
     let chars2 = text2.chars;
 
     gsap.to(chars1, {
-      y: -22,
+      y: -23,
       stagger: {
         each: 0.05,
         from: "end",
@@ -88,7 +101,7 @@ const Navbar = () => {
       duration: 0.25,
     });
     gsap.to(chars2, {
-      y: -22,
+      yPercent: -100,
       delay: 0.1,
       stagger: {
         each: 0.05,
@@ -111,12 +124,12 @@ const Navbar = () => {
       ref={navRef}>
       <div className="wrapper">
         <Link href={"/"}>
-          <text className="chocos">CHOCOS</text>
+          <text className={`chocos ${myFont.className}`}>CHOCOS</text>
         </Link>
 
         <div className="location">
           {/* globe icon */}
-          <TbWorld />
+          <TbWorld className="icon" />
           <p>LAGOS, NG 22:21</p>
         </div>
 
@@ -130,7 +143,7 @@ const Navbar = () => {
                 onMouseLeave={mouseLeaveAnimation}
                 onMouseEnter={mouseEnterAnimation}>
                 <p>{item.label}</p>
-                <p>{item.label}</p>
+                <p className="secondP">{item.label}</p>
               </li>
             </Link>
           ))}
