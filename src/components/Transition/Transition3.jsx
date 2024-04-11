@@ -9,7 +9,12 @@ export default function Transition() {
   const loadingList = [0, 22, 40, 66, 80, 100];
   const [isLoading, setIsLoading] = useState(true);
   const loadingSectionRef = useRef(null);
-  const removeLoadingSection = () => loadingSectionRef.current?.remove();
+  const removeLoadingSection = () => {
+    const ele = loadingSectionRef.current;
+    if (ele) {
+      // ele.remove();
+    }
+  };
 
   useGSAP(() => {
     gsap.set([".counter_1", ".counter_2", ".counter_3", ".counter_4", ".counter_5"], {
@@ -72,62 +77,118 @@ export default function Transition() {
       textTimeline2 = new gsap.timeline({
         paused: isLoading,
       });
-    let text3 = new SplitText(" .nicc", { type: "chars" });
+    let text3 = new SplitText(".nicc", { type: "chars" });
 
     let chars3 = text3.chars;
     //replace all these with a stagger animation
 
-    textTimeline1
-      .fromTo(
-        [names[3], names[2], names[1], names[0]],
-        {
-          autoAlpha: 0,
-          y: -400,
-          x: 0,
-          stagger: 0.12,
-        },
-        {
-          autoAlpha: 1,
-          delay: 0.75,
-          duration: 1,
-          y: 10,
-          ease: "back.out(2.5)",
-          stagger: 0.12,
-        }
-      )
-      .fromTo([names[3], names[2], names[1], names[0]], { opacity: 20 }, { display: "none" });
+    // textTimeline1
+    //   .fromTo(
+    //     [names[3], names[2], names[1], names[0]],
+    //     {
+    //       autoAlpha: 0,
+    //       y: -400,
+    //       x: 0,
+    //       stagger: 0.12,
+    //     },
+    //     {
+    //       autoAlpha: 1,
+    //       delay: 0.75,
+    //       duration: 1,
+    //       y: 10,
+    //       ease: "back.out(2.5)",
+    //       stagger: 0.12,
+    //     }
+    //   )
+    //   .fromTo([names[3], names[2], names[1], names[0]], { opacity: 20 }, { display: "none" });
 
     textTimeline2
       .fromTo(
-        names[4],
+        chars3,
         {
           y: -400,
           autoAlpha: 0,
         },
         {
           autoAlpha: 1,
-          duration: 0.8,
+          duration: 1.5,
           y: 10,
-          ease: "power1.in",
+          ease: "back.out(2)",
+          stagger: { each: 0.15, from: "start" },
         }
       )
-      .to(names[4], { y: 10, delay: 0.15, ease: "power1.in", duration: 1, color: "#dad6ca" })
-      .to(".nicc", { position: "relative", duration: 0.7 })
+      .fromTo(".nicc", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1, color: "#ffffff" })
       .to(chars3, {
         onStart: () => {
           chars3[2].classList.add("letter");
           chars3.forEach((ele, i) => (i === 2 ? null : (ele.style.zIndex = -1)));
         },
-
-        scale: 0.8,
-        margin: "0 -3%",
+        scale: 0.75,
+        delay: "0.2",
+        duration: 1.3,
+        each: "power1.in",
       })
+      .to(chars3[0], {
+        x: "350",
+        duration: 1,
+        opacity: 0,
+        ease: "power1.in(2)",
+      })
+      .to(
+        chars3[5],
+        {
+          x: "-550",
+          duration: 1,
+          opacity: 0,
+          ease: "power1.in(2)",
+        },
+        "-=1"
+      )
+      .to(
+        chars3[1],
+        {
+          x: "200",
+          duration: 1,
+          opacity: 0,
+          ease: "power1.in(2)",
+        },
+        "-=.5"
+      )
+      .to(
+        chars3[4],
+        {
+          x: "-403",
+          duration: 1,
+          opacity: 0,
+          ease: "power1.in(2)",
+        },
+        "-=1"
+      )
+      .to(
+        chars3[2],
+        {
+          x: "40",
+          duration: 1,
+          ease: "power1.in(2)",
+        },
+        "-=.5"
+      )
+      .to(
+        chars3[3],
+        {
+          x: "-130",
+          duration: 1,
+          opacity: 0,
+          ease: "power1.in(2)",
+        },
+        "-=1"
+      )
       .to(chars3[2], {
-        delay: -0.3,
+        delay: 0,
         zIndex: 13,
-        scale: "50vw 50vh",
-        duration: 1.5,
-        ease: "power1.in",
+        scale: "49vw 49vh",
+        duration: 2,
+        ease: "power1.in(2)",
       })
       .to(".loadingSection", { opacity: 0 }, "-=.5")
       .then(removeLoadingSection);
@@ -139,11 +200,11 @@ export default function Transition() {
         className="loadingSection"
         ref={loadingSectionRef}>
         <div className="first">
-          {Array(5)
+          {Array(1)
             .fill(0)
             .map((_, i) => (
               <p
-                className={`nameSpan nickname${i === 4 ? " nicc" : ""}`}
+                className={`nameSpan nickname nicc`}
                 key={`loading_nickname${i}`}>
                 CHOCOS
               </p>

@@ -69,7 +69,6 @@ body {
 .nicc {
   display: flex;
   justify-content: center;
-  position: relative !important;
 }
 
 .letter {
@@ -101,9 +100,7 @@ body {
 
 .nickname {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // visibility: hidden;
 
   &:nth-child(1) {
     z-index: 12;
