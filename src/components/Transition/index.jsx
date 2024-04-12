@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Transition5 from "./Transition5";
+import Transition4 from "./Transition4";
 import { usePathname } from "next/navigation";
 
 const Index = ({ children }) => {
   const pathname = usePathname();
   return (
     <>
-      <Transition5 key={pathname} />
+      <Transition4 key={pathname} />
       <div>{children}</div>
     </>
   );

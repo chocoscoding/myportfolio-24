@@ -3,7 +3,18 @@ import gsap from "gsap";
 import SplitText from "gsap/dist/SplitText";
 import GSDevTools from "gsap/dist/GSDevTools";
 import { useRef, useState } from "react";
+import localFont from "next/font/local";
 gsap.registerPlugin(SplitText, GSDevTools);
+
+const myFont = localFont({
+  src: [
+    {
+      path: "../../fonts/ZT/ztravigsfen-alternate.otf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+});
 
 export default function Transition() {
   const loadingList = [0, 22, 40, 66, 80, 100];
@@ -126,22 +137,23 @@ export default function Transition() {
         scale: 0.8,
         margin: "3%",
         delay: "0.2",
-        duration: 1.3,
+        duration: 1.6,
         each: "power1.in",
       })
       .to(chars3[2], {
-        delay: -1.25,
+        delay: -0.25,
         zIndex: 13,
         scale: "49vw 49vh",
         duration: 2,
         ease: "power1.in(2)",
       })
       .to(".loadingSection", { opacity: 0 }, "-=.5")
+      .to(".childrenWrapper", { autoAlpha: 1 }, "-=.5")
       .then(removeLoadingSection);
   }, [isLoading]);
 
   return (
-    <>
+    <div className={myFont.className}>
       <section
         className="loadingSection"
         ref={loadingSectionRef}>
@@ -169,6 +181,6 @@ export default function Transition() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

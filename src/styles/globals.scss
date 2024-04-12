@@ -93,10 +93,10 @@ body {
     font-weight: 100;
     position: absolute;
     top: 10%; /* Adjust the position of the inner circle */
-    left: 15%; /* Adjust the position of the inner circle */
-    width: 70%; /* Adjust the size of the inner circle */
-    height: 60%;
-    border-radius: 50%;
+    left: 28%; /* Adjust the position of the inner circle */
+    width: 43%; /* Adjust the size of the inner circle */
+    height: 65%;
+    border-radius: 30%;
     background-color: #000;
     z-index: -2 !important; /* Change this to your desired background color */
   }
@@ -215,14 +215,14 @@ nav {
 
     .chocos {
       //name
-      font-size: 2.1rem;
+      font-size: 1.5rem;
     }
 
     .location {
       display: flex;
       align-items: center;
       gap: 3px;
-      font-size: 1.1rem;
+      font-size: 1.5rem;
 
       .icon {
         position: relative;
@@ -235,7 +235,7 @@ nav {
       display: flex;
       gap: 30px;
       li {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         cursor: pointer;
         padding-left: 5px;
         padding-right: 5px;
