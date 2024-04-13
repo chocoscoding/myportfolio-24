@@ -23,7 +23,7 @@ export default function Transition() {
   const removeLoadingSection = () => {
     const ele = loadingSectionRef.current;
     if (ele) {
-      // ele.remove();
+      ele.remove();
     }
   };
 
@@ -51,6 +51,7 @@ export default function Transition() {
         gsap.to(`.counter-mask`, {
           display: "none",
         });
+        gsap.to(".first", { autoAlpha: 1 });
         setTimeout(() => {
           setIsLoading(false);
           document.querySelector(".counter-mask")?.remove();
@@ -60,25 +61,25 @@ export default function Transition() {
 
     setTimeout(() => {
       LoadProgress(0);
-    }, 100);
+    }, 1000 - 500);
     setTimeout(() => {
       LoadProgress(1);
-    }, 200);
+    }, 2000 - 500);
     setTimeout(() => {
       LoadProgress(2);
-    }, 300);
+    }, 3000 - 500);
     setTimeout(() => {
       LoadProgress(3);
-    }, 400);
+    }, 4000 - 500);
     setTimeout(() => {
       LoadProgress(4);
-    }, 500);
+    }, 5000 - 500);
     setTimeout(() => {
       LoadProgress(5);
-    }, 600);
+    }, 6000 - 500);
     setTimeout(() => {
       LoadProgress(6);
-    }, 700);
+    }, 7000 - 500);
 
     const names = gsap.utils.toArray(".nickname");
 
@@ -91,27 +92,6 @@ export default function Transition() {
     let text3 = new SplitText(".nicc", { type: "chars" });
 
     let chars3 = text3.chars;
-    //replace all these with a stagger animation
-
-    // textTimeline1
-    //   .fromTo(
-    //     [names[3], names[2], names[1], names[0]],
-    //     {
-    //       autoAlpha: 0,
-    //       y: -400,
-    //       x: 0,
-    //       stagger: 0.12,
-    //     },
-    //     {
-    //       autoAlpha: 1,
-    //       delay: 0.75,
-    //       duration: 1,
-    //       y: 10,
-    //       ease: "back.out(2.5)",
-    //       stagger: 0.12,
-    //     }
-    //   )
-    //   .fromTo([names[3], names[2], names[1], names[0]], { opacity: 20 }, { display: "none" });
 
     textTimeline2
       .fromTo(
@@ -122,7 +102,7 @@ export default function Transition() {
         },
         {
           autoAlpha: 1,
-          duration: 1.5,
+          duration: 1.45,
           y: 10,
           ease: "back.out(2)",
           stagger: { each: 0.15, from: "start" },
@@ -135,7 +115,7 @@ export default function Transition() {
           chars3.forEach((ele, i) => (i === 2 ? null : (ele.style.zIndex = -1)));
         },
         scale: 0.8,
-        margin: "3%",
+        margin: "2%",
         delay: "0.2",
         duration: 1.6,
         each: "power1.in",
@@ -143,12 +123,12 @@ export default function Transition() {
       .to(chars3[2], {
         delay: -0.25,
         zIndex: 13,
-        scale: "49vw 49vh",
-        duration: 2,
+        scale: "50vw 50vh",
+        duration: 1.9,
         ease: "power1.in(2)",
       })
-      .to(".loadingSection", { opacity: 0 }, "-=.5")
-      .to(".childrenWrapper", { autoAlpha: 1 }, "-=.5")
+      .to(".loadingSection", { opacity: 0 }, "-=.4")
+      .to(".childrenWrapper", { autoAlpha: 1 }, "-=.45")
       .then(removeLoadingSection);
   }, [isLoading]);
 

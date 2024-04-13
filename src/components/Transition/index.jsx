@@ -7,7 +7,7 @@ const Index = ({ children }) => {
   return (
     <>
       <Transition4 key={pathname} />
-      <div>{children}</div>
+      {children}
     </>
   );
 };
