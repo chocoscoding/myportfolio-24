@@ -31,6 +31,12 @@ const Navbar = () => {
         navRef.current.style.mixBlendMode = "normal";
       },
     });
+    gsap.from("li", {
+      delay: 0.2,
+      x: 190,
+      ease: "power1.out(2)",
+      stagger: 0.05,
+    });
   };
   const closeNavAnimation = () => {
     gsap.to("ul", {
@@ -64,7 +70,7 @@ const Navbar = () => {
     let chars2 = text2.chars;
 
     gsap.to(chars1, {
-      y: 22,
+      yPercent: 100,
       stagger: {
         each: 0.05,
         from: "start",
@@ -92,7 +98,7 @@ const Navbar = () => {
     let chars2 = text2.chars;
 
     gsap.to(chars1, {
-      y: -23,
+      yPercent: -100,
       stagger: {
         each: 0.05,
         from: "end",
@@ -130,7 +136,7 @@ const Navbar = () => {
         <div className="location">
           {/* globe icon */}
           <TbWorld className="icon" />
-          <p>LAGOS, NG 22:21</p>
+          <p>LAGOS, NG</p>
         </div>
 
         <ul>

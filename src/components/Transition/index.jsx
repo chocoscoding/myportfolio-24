@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 
 const Index = ({ children }) => {
   const pathname = usePathname();
+
   return (
     <>
       <Transition4 key={pathname} />
