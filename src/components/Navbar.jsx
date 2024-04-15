@@ -7,6 +7,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
 import Image from "next/image";
 import localFont from "next/font/local";
+import { useGSAP } from "@gsap/react";
 
 const myFont = localFont({
   src: [
@@ -21,7 +22,8 @@ const myFont = localFont({
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const navRef = useRef(null);
-  const openNavAnimation = () => {
+  const { contextSafe } = useGSAP({ scope: navRef.current });
+  const openNavAnimation = contextSafe(() => {
     gsap.to("ul", {
       x: 0,
       opacity: 100,
@@ -35,10 +37,10 @@ const Navbar = () => {
       delay: 0.2,
       x: 190,
       ease: "power1.out(2)",
-      stagger: 0.05,
+      stagger: 0.04,
     });
-  };
-  const closeNavAnimation = () => {
+  });
+  const closeNavAnimation = contextSafe(() => {
     gsap.to("ul", {
       x: "100%",
       opacity: 0,
@@ -48,7 +50,7 @@ const Navbar = () => {
         navRef.current.style.mixBlendMode = "difference";
       },
     });
-  };
+  });
 
   const toggleNav = () => {
     setNavOpen((prev) => !prev);
@@ -62,7 +64,7 @@ const Navbar = () => {
     }
   };
 
-  const mouseLeaveAnimation = (e) => {
+  const mouseLeaveAnimation = contextSafe((e) => {
     const children = e.currentTarget.children;
     let text = new SplitText(children[0], { type: "chars" });
     let text2 = new SplitText(children[1], { type: "chars" });
@@ -72,24 +74,24 @@ const Navbar = () => {
     gsap.to(chars1, {
       yPercent: 100,
       stagger: {
-        each: 0.05,
-        from: "start",
-        ease: "power1.out",
-      },
-      duration: 0.3,
-      delay: 0.1,
-    });
-    gsap.to(chars2, {
-      yPercent: 100,
-      stagger: {
-        each: 0.05,
+        each: 0.04,
         from: "start",
         ease: "power1.out",
       },
       duration: 0.25,
+      // delay: 0.1,
     });
-  };
-  const mouseEnterAnimation = (e) => {
+    gsap.to(chars2, {
+      yPercent: 100,
+      stagger: {
+        each: 0.04,
+        from: "start",
+        ease: "power1.out",
+      },
+      duration: 0.2,
+    });
+  });
+  const mouseEnterAnimation = contextSafe((e) => {
     const children = e.currentTarget.children;
     //split the elements using gsap splitText
     let text = new SplitText(children[0], { type: "chars" });
@@ -100,23 +102,23 @@ const Navbar = () => {
     gsap.to(chars1, {
       yPercent: -100,
       stagger: {
-        each: 0.05,
+        each: 0.04,
+        from: "end",
+        ease: "power1.in",
+      },
+      duration: 0.2,
+    });
+    gsap.to(chars2, {
+      yPercent: -100,
+      // delay: 0.1,
+      stagger: {
+        each: 0.04,
         from: "end",
         ease: "power1.in",
       },
       duration: 0.25,
     });
-    gsap.to(chars2, {
-      yPercent: -100,
-      delay: 0.1,
-      stagger: {
-        each: 0.05,
-        from: "end",
-        ease: "power1.in",
-      },
-      duration: 0.3,
-    });
-  };
+  });
 
   const menuItems = [
     { label: "Projects", href: "/projects" },

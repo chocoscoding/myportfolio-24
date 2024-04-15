@@ -17,7 +17,7 @@ body {
 .noise {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: fixed !important;
   pointer-events: none;
   opacity: 5% !important;
 }
@@ -287,6 +287,9 @@ nav .wrapper ul li {
   height: min-content;
   overflow: hidden;
   position: relative;
+}
+nav .wrapper ul li:hover .secondP {
+  color: #0feb79;
 }
 nav .wrapper ul li .secondP {
   position: absolute;

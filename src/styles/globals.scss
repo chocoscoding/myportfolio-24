@@ -17,7 +17,7 @@ body {
 .noise {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: fixed !important;
   pointer-events: none;
   opacity: 5% !important;
 }
@@ -288,6 +288,12 @@ nav {
         height: min-content;
         overflow: hidden;
         position: relative;
+
+        &:hover {
+          .secondP {
+            color: #0feb79;
+          }
+        }
 
         .secondP {
           position: absolute;

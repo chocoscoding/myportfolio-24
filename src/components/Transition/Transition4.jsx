@@ -23,12 +23,9 @@ export default function Transition({ children, props }) {
   const loadingSectionRef = useRef(null);
   const pathname = usePathname();
 
-  const textTimeline1 = new gsap.timeline({
-      paused: isLoading,
-    }),
-    textTimeline2 = new gsap.timeline({
-      paused: isLoading,
-    });
+  const textTimeline2 = new gsap.timeline({
+    paused: isLoading,
+  });
 
   const removeLoadingSection = () => {
     const ele = loadingSectionRef.current;
@@ -47,8 +44,6 @@ export default function Transition({ children, props }) {
     gsap.set(".childrenWrapper", { autoAlpha: 0 });
 
     const LoadProgress = (progress) => {
-      console.log(progress);
-
       gsap.to(`.counter_${progress}`, {
         autoAlpha: 1,
         y: "center",
