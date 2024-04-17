@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SmoothScrolling from "@/components/SmoothScrolling";
 import Transition from "@/components/Transition";
 import "@/styles/globals.css";
 import localFont from 'next/font/local';
@@ -15,14 +16,18 @@ const myFont = localFont({
   ],
 });
 export default function App({ Component, pageProps }) {
-  return (<main className={myFont.className}>
-    <Image src={`/noise.jpg`} alt="noise bg" className="noise" fill />
-    <Transition>
-      <Navbar />
-      <div className="childrenWrapper">
-        <Component {...pageProps} />
-      </div>
-    </Transition>
-  </main>
+  return (
+    <SmoothScrolling>
+      <main className={myFont.className}>
+
+        <Image src={`/noise.jpg`} alt="noise bg" className="noise" fill />
+        <Transition>
+          <Navbar />
+          <div className="childrenWrapper">
+            <Component {...pageProps} />
+          </div>
+        </Transition>
+      </main>
+    </SmoothScrolling>
   );
 }

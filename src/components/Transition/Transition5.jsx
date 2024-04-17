@@ -99,7 +99,7 @@ export default function Transition({ children, props }) {
         each: "power1.in",
       })
       .to(chars3[0], {
-        x: "350",
+        xPercent: 200,
         duration: 1,
         opacity: 0,
         ease: "power1.in(2)",
@@ -107,7 +107,7 @@ export default function Transition({ children, props }) {
       .to(
         chars3[5],
         {
-          x: "-467.5",
+          xPercent: -367.5,
           duration: 1,
           opacity: 0,
           ease: "power1.in(2)",
@@ -117,7 +117,7 @@ export default function Transition({ children, props }) {
       .to(
         chars3[1],
         {
-          x: "120",
+          xPercent: 100,
           duration: 0.95,
           opacity: 0,
           ease: "power1.in(2)",
@@ -127,7 +127,7 @@ export default function Transition({ children, props }) {
       .to(
         chars3[4],
         {
-          x: "-302.25",
+          xPercent: -150.25,
           duration: 0.95,
           opacity: 0,
           ease: "power1.in(2)",
@@ -137,7 +137,7 @@ export default function Transition({ children, props }) {
       .to(
         chars3[2],
         {
-          x: "40",
+          xPercent: 40,
           duration: 0.9,
           ease: "power1.in(2)",
         },
@@ -146,7 +146,7 @@ export default function Transition({ children, props }) {
       .to(
         chars3[3],
         {
-          x: "-130",
+          xPercent: -80,
           duration: 0.9,
           opacity: 0,
           ease: "power1.in(2)",
@@ -174,25 +174,25 @@ export default function Transition({ children, props }) {
 
     const tl1 = setTimeout(() => {
       LoadProgress(0);
-    }, 1000);
+    }, 100);
     const tl2 = setTimeout(() => {
       LoadProgress(1);
-    }, 2000);
+    }, 200);
     const tl3 = setTimeout(() => {
       LoadProgress(2);
-    }, 3000);
+    }, 300);
     const tl4 = setTimeout(() => {
       LoadProgress(3);
-    }, 4000);
+    }, 400);
     const tl5 = setTimeout(() => {
       LoadProgress(4);
-    }, 5000);
+    }, 500);
     const tl6 = setTimeout(() => {
       LoadProgress(5);
-    }, 6000);
+    }, 600);
     const tl7 = setTimeout(() => {
       LoadProgress(6);
-    }, 7000);
+    }, 700);
 
     return () => {
       clearTimeout(tl1);
@@ -208,16 +208,12 @@ export default function Transition({ children, props }) {
   return (
     <>
       <div className={myFont.className}>
-        <section
-          className="loadingSection"
-          ref={loadingSectionRef}>
+        <section className="loadingSection" ref={loadingSectionRef}>
           <div className="first">
             {Array(1)
               .fill(0)
               .map((_, i) => (
-                <p
-                  className={`nameSpan nickname nicc`}
-                  key={`loading_nickname${i}`}>
+                <p className={`nameSpan nickname nicc`} key={`loading_nickname${i}`}>
                   CHOCOS
                 </p>
               ))}
@@ -225,9 +221,7 @@ export default function Transition({ children, props }) {
           <div className="counter-mask">
             <div className="container">
               {loadingList.map((ele, i) => (
-                <h1
-                  key={"counter_" + i}
-                  className={`counter counter_${i}`}>
+                <h1 key={"counter_" + i} className={`counter counter_${i}`}>
                   {ele}
                   <span>%</span>
                 </h1>
