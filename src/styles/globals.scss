@@ -27,6 +27,9 @@ body {
 // -----------HOME (/)-----------------
 
 .nameSection {
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: -1;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -36,10 +39,10 @@ body {
   overflow: hidden;
 
   .halo-canvas {
-    background-color: blue;
-    height: 100%;
+    background-color: transparent;
+    height: 100vh;
     width: 100%;
-    position: absolute;
+    position: absolute !important;
     top: 0;
     left: 0;
   }
@@ -51,8 +54,8 @@ body {
   overflow: hidden;
 }
 .childrenWrapper {
-  visibility: hidden;
-  z-index: 5;
+  // visibility: hidden;
+  // z-index: 5;
   overflow: hidden;
 }
 .loadingSection {
