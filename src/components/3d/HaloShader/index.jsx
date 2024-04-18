@@ -12,11 +12,6 @@ const Blob = () => {
 
   const mousePosition = useRef({ x: 0, y: 0 });
 
-  const updateMousePosition = useCallback((e) => {
-    // console.log({ x: e.pageX, y: e.pageY });
-    mousePosition.current = { x: e.pageX, y: e.pageY };
-  }, []);
-
   const uniforms = useMemo(
     () => ({
       iMouse: { value: new Vector2(0, 0) },
@@ -31,6 +26,10 @@ const Blob = () => {
     }),
     []
   );
+  const updateMousePosition = useCallback((e) => {
+    mousePosition.current.x = -(e.clientX / window.innerWidth) * 2 - 1;
+    mousePosition.current.y = (e.clientY / window.innerHeight) * 2 + 1;
+  }, []);
 
   useEffect(() => {
     window.addEventListener("mousemove", updateMousePosition, false);
@@ -42,27 +41,11 @@ const Blob = () => {
   useFrame((state) => {
     const { clock } = state;
 
-    mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
+    mesh.current.material.uniforms.iTime.value = clock.getElapsedTime() * 0.85;
     mesh.current.material.uniforms.iMouse.value = new Vector2(mousePosition.current.x, mousePosition.current.y);
   });
   return (
-    <mesh
-      onClick={(e) => console.log("click")}
-      onContextMenu={(e) => console.log("context menu")}
-      onDoubleClick={(e) => console.log("double click")}
-      onWheel={(e) => console.log("wheel spins")}
-      onPointerUp={(e) => console.log("up")}
-      onPointerDown={(e) => console.log("down")}
-      onPointerOver={(e) => console.log("over")}
-      onPointerOut={(e) => console.log("out")}
-      onPointerEnter={(e) => console.log("enter")} // see note 1
-      onPointerLeave={(e) => console.log("leave")} // see note 1
-      onPointerMove={(e) => console.log("move")}
-      onPointerMissed={() => console.log("missed")}
-      onUpdate={(self) => console.log("props have been updated")}
-      ref={mesh}
-      position={[0, 0, 0]}
-      scale={3}>
+    <mesh ref={mesh} position={[0, 0, 0]} scale={3}>
       <planeGeometry args={[9, 6]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} wireframe={false} />
     </mesh>

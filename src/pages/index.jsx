@@ -16,6 +16,38 @@ export default function Home() {
           <p className="nameSpan nameSpan2">ENGINEER</p>
         </div>
       </section>
+      <section className="nameSection">
+        <div className="second nameText">
+          <p className="nameSpan nameSpan1">SOFTWARE</p>
+        </div>
+        <div className="third nameText">
+          <p className="nameSpan nameSpan2">ENGINEER</p>
+        </div>
+      </section>
+      <section className="nameSection">
+        <div className="second nameText">
+          <p className="nameSpan nameSpan1">SOFTWARE</p>
+        </div>
+        <div className="third nameText">
+          <p className="nameSpan nameSpan2">ENGINEER</p>
+        </div>
+      </section>
+      <section className="nameSection">
+        <div className="second nameText">
+          <p className="nameSpan nameSpan1">SOFTWARE</p>
+        </div>
+        <div className="third nameText">
+          <p className="nameSpan nameSpan2">ENGINEER</p>
+        </div>
+      </section>
+      <section className="nameSection">
+        <div className="second nameText">
+          <p className="nameSpan nameSpan1">SOFTWARE</p>
+        </div>
+        <div className="third nameText">
+          <p className="nameSpan nameSpan2">ENGINEER</p>
+        </div>
+      </section>
     </main>
   );
 }
