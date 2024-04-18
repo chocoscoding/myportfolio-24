@@ -9,10 +9,10 @@ export default function Home() {
     <main>
       <section className="nameSection">
         <HaloShader />
-        <div className="second">
+        <div className="second nameText">
           <p className="nameSpan nameSpan1">SOFTWARE</p>
         </div>
-        <div className="third">
+        <div className="third nameText">
           <p className="nameSpan nameSpan2">ENGINEER</p>
         </div>
       </section>

@@ -1,7 +1,7 @@
-import { OrbitControls } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
-import { MathUtils } from "three";
+import { OrbitControls, useAspect } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { MathUtils, Vector2 } from "three";
 
 import vertexShader from "!!raw-loader!./vertexShader.glsl";
 import fragmentShader from "!!raw-loader!./fragmentShader.glsl";
@@ -9,39 +9,61 @@ import fragmentShader from "!!raw-loader!./fragmentShader.glsl";
 const Blob = () => {
   // This reference will give us direct access to the mesh
   const mesh = useRef();
-  const hover = useRef(false);
+
+  const mousePosition = useRef({ x: 0, y: 0 });
+
+  const updateMousePosition = useCallback((e) => {
+    // console.log({ x: e.pageX, y: e.pageY });
+    mousePosition.current = { x: e.pageX, y: e.pageY };
+  }, []);
 
   const uniforms = useMemo(
     () => ({
-      u_intensity: {
-        value: 0.3,
+      iMouse: { value: new Vector2(0, 0) },
+      iTime: {
+        type: "f",
+        value: 1.0,
       },
-      u_time: {
-        value: 0.0,
+      iResolution: {
+        type: "v2",
+        value: new Vector2(9, 6),
       },
     }),
     []
   );
 
+  useEffect(() => {
+    window.addEventListener("mousemove", updateMousePosition, false);
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition, false);
+    };
+  }, [updateMousePosition]);
+
   useFrame((state) => {
     const { clock } = state;
-    mesh.current.material.uniforms.u_time.value = 0.4 * clock.getElapsedTime();
 
-    mesh.current.material.uniforms.u_intensity.value = MathUtils.lerp(
-      mesh.current.material.uniforms.u_intensity.value,
-      hover.current ? 0.85 : 0.15,
-      0.02
-    );
+    mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
+    mesh.current.material.uniforms.iMouse.value = new Vector2(mousePosition.current.x, mousePosition.current.y);
   });
-
   return (
     <mesh
+      onClick={(e) => console.log("click")}
+      onContextMenu={(e) => console.log("context menu")}
+      onDoubleClick={(e) => console.log("double click")}
+      onWheel={(e) => console.log("wheel spins")}
+      onPointerUp={(e) => console.log("up")}
+      onPointerDown={(e) => console.log("down")}
+      onPointerOver={(e) => console.log("over")}
+      onPointerOut={(e) => console.log("out")}
+      onPointerEnter={(e) => console.log("enter")} // see note 1
+      onPointerLeave={(e) => console.log("leave")} // see note 1
+      onPointerMove={(e) => console.log("move")}
+      onPointerMissed={() => console.log("missed")}
+      onUpdate={(self) => console.log("props have been updated")}
       ref={mesh}
       position={[0, 0, 0]}
-      scale={1.5}
-      onPointerOver={() => (hover.current = true)}
-      onPointerOut={() => (hover.current = false)}>
-      <icosahedronGeometry args={[2, 20]} />
+      scale={3}>
+      <planeGeometry args={[9, 6]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} wireframe={false} />
     </mesh>
   );
