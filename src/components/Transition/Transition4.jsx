@@ -67,7 +67,6 @@ export default function Transition({ children, props }) {
       }
     };
 
-    const names = gsap.utils.toArray(".nickname");
     let text3 = new SplitText(".nicc", { type: "chars" });
 
     let chars3 = text3.chars;
@@ -154,16 +153,12 @@ export default function Transition({ children, props }) {
   return (
     <>
       <div className={myFont.className}>
-        <section
-          className="loadingSection"
-          ref={loadingSectionRef}>
+        <section className="loadingSection" ref={loadingSectionRef}>
           <div className="first">
             {Array(1)
               .fill(0)
               .map((_, i) => (
-                <p
-                  className={`nameSpan nickname nicc`}
-                  key={`loading_nickname${i}`}>
+                <p className={`nameSpan nickname nicc`} key={`loading_nickname${i}`}>
                   CHOCOS
                 </p>
               ))}
@@ -171,9 +166,7 @@ export default function Transition({ children, props }) {
           <div className="counter-mask">
             <div className="container">
               {loadingList.map((ele, i) => (
-                <h1
-                  key={"counter_" + i}
-                  className={`counter counter_${i}`}>
+                <h1 key={"counter_" + i} className={`counter counter_${i}`}>
                   {ele}
                   <span>%</span>
                 </h1>

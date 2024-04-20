@@ -17,22 +17,14 @@ const myFont = localFont({
   ],
 });
 
-export default function Transition({ children, props }) {
+export default function Transition({ children, setShow }) {
   const loadingList = [0, 22, 40, 66, 80, 100];
   const [isLoading, setIsLoading] = useState(true);
   const loadingSectionRef = useRef(null);
-  const pathname = usePathname();
 
   const textTimeline2 = new gsap.timeline({
     paused: isLoading,
   });
-
-  const removeLoadingSection = () => {
-    const ele = loadingSectionRef.current;
-    if (ele) {
-      ele.remove();
-    }
-  };
 
   useGSAP(() => {
     gsap.set([".counter_1", ".counter_2", ".counter_3", ".counter_4", ".counter_5"], {
@@ -86,7 +78,7 @@ export default function Transition({ children, props }) {
           stagger: { each: 0.15, from: "start" },
         }
       )
-      .fromTo(".nicc", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1, color: "#dad6ca" })
+      .fromTo(".nicc", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1, color: "#e6dec6" })
       .to(chars3, {
         onStart: () => {
           chars3[2].classList.add("letter");
@@ -95,7 +87,7 @@ export default function Transition({ children, props }) {
         scale: 0.8,
         // margin: "2%",
         delay: "0.2",
-        duration: 1.6,
+        duration: 1.25,
         each: "power1.in",
       })
       .to(chars3[0], {
@@ -118,7 +110,7 @@ export default function Transition({ children, props }) {
         chars3[1],
         {
           xPercent: 100,
-          duration: 0.95,
+          duration: 0.75,
           opacity: 0,
           ease: "power1.in(2)",
         },
@@ -128,7 +120,7 @@ export default function Transition({ children, props }) {
         chars3[4],
         {
           xPercent: -150.25,
-          duration: 0.95,
+          duration: 0.75,
           opacity: 0,
           ease: "power1.in(2)",
         },
@@ -138,7 +130,7 @@ export default function Transition({ children, props }) {
         chars3[2],
         {
           xPercent: 40,
-          duration: 0.9,
+          duration: 0.7,
           ease: "power1.in(2)",
         },
         "-=.5"
@@ -147,17 +139,17 @@ export default function Transition({ children, props }) {
         chars3[3],
         {
           xPercent: -80,
-          duration: 0.9,
+          duration: 0.7,
           opacity: 0,
           ease: "power1.in(2)",
         },
         "<"
       )
       .to(chars3[2], {
-        delay: 0.3,
+        delay: 0.05,
         zIndex: 13,
         scale: "53vw 53vh",
-        duration: 2,
+        duration: 1.5,
         ease: "power1.in(2)",
       })
       .to(".loadingSection", { opacity: 0 }, "-=.75")
@@ -165,6 +157,9 @@ export default function Transition({ children, props }) {
         ".childrenWrapper",
         {
           autoAlpha: 1,
+          onStart: () => {
+            setShow("show");
+          },
           onComplete: () => {
             document.querySelector(".loadingSection").style.zIndex = "-99999";
           },
@@ -174,25 +169,25 @@ export default function Transition({ children, props }) {
 
     const tl1 = setTimeout(() => {
       LoadProgress(0);
-    }, 100);
+    }, 1000);
     const tl2 = setTimeout(() => {
       LoadProgress(1);
-    }, 200);
+    }, 2000);
     const tl3 = setTimeout(() => {
       LoadProgress(2);
-    }, 300);
+    }, 3000);
     const tl4 = setTimeout(() => {
       LoadProgress(3);
-    }, 400);
+    }, 4000);
     const tl5 = setTimeout(() => {
       LoadProgress(4);
-    }, 500);
+    }, 5000);
     const tl6 = setTimeout(() => {
       LoadProgress(5);
-    }, 600);
+    }, 6000);
     const tl7 = setTimeout(() => {
       LoadProgress(6);
-    }, 700);
+    }, 7000);
 
     return () => {
       clearTimeout(tl1);

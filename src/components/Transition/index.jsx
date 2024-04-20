@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Transition4 from "./Transition5";
+import Transition5 from "./Transition5";
 import { usePathname } from "next/navigation";
 
 const Index = ({ children }) => {
   const pathname = usePathname();
+  const [show, setShow] = useState("show");
 
+  useEffect(() => {
+    setShow("hide");
+  }, [pathname]);
   return (
     <>
-      {/* <Transition4 key={pathname} /> */}
-      {children}
+      <Transition5 key={pathname} setShow={setShow} />
+      {show === "show" ? <div>{children}</div> : null}
     </>
   );
 };

@@ -21,8 +21,8 @@ export default function App({ Component, pageProps }) {
       <main className={myFont.className}>
 
         <Image src={`/noise.jpg`} alt="noise bg" className="noise" fill />
+        <Navbar />
         <Transition>
-          <Navbar />
           <div className="childrenWrapper">
             <Component {...pageProps} />
           </div>
