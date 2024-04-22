@@ -16,7 +16,7 @@ body {
   backface-visibility: hidden;
   --sb-track-color: #6c6c6c27;
   --sb-thumb-color: #0cd16b;
-  --sb-size: 11px;
+  --sb-size: 10px;
 }
 body::-webkit-scrollbar {
   width: var(--sb-size);
@@ -44,7 +44,7 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
   position: fixed !important;
   pointer-events: none;
-  opacity: 2.75% !important;
+  opacity: 3% !important;
   z-index: 1000;
 }
 
@@ -97,11 +97,17 @@ body::-webkit-scrollbar-thumb {
   }
 }
 .HomePage .introSection {
-  border: 1px solid red;
-  font-size: 4rem;
+  margin: auto;
+  width: 75%;
+  margin-bottom: 40%;
 }
 .HomePage .introSection .introText {
-  color: rgba(218, 214, 202, 0.4196078431);
+  margin: 5%;
+  font-size: 2.6rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: rgba(218, 214, 202, 0.137254902);
+  scale: 0.9;
 }
 
 .nameSection .first,
@@ -127,7 +133,7 @@ body::-webkit-scrollbar-thumb {
   left: 0;
   overflow: hidden;
   background-color: rgba(0, 255, 123, 0.2274509804);
-  z-index: 20;
+  z-index: 100;
 }
 
 .nameSpan {

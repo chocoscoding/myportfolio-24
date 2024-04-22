@@ -33,7 +33,7 @@ export default function Transition({ children, setShow }) {
       autoAlpha: 0,
     });
     gsap.set(".counter_0", { y: "center", x: 25, autoAlpha: 1 });
-    gsap.set(".childrenWrapper", { autoAlpha: 0 });
+    // gsap.set(".transitionChildren", { autoAlpha: 0 });
 
     const LoadProgress = (progress) => {
       gsap.to(`.counter_${progress}`, {
@@ -146,25 +146,24 @@ export default function Transition({ children, setShow }) {
         "<"
       )
       .to(chars3[2], {
-        delay: 0.05,
+        delay: 0.08,
         zIndex: 13,
         scale: "53vw 53vh",
         duration: 1.5,
         ease: "power1.in(2)",
       })
-      .to(".loadingSection", { opacity: 0 }, "-=.75")
       .to(
-        ".childrenWrapper",
+        ".loadingSection",
         {
-          autoAlpha: 1,
+          opacity: 0,
           onStart: () => {
             setShow("show");
           },
           onComplete: () => {
-            document.querySelector(".loadingSection").style.zIndex = "-99999";
+            document.querySelector(".loadingSection").remove();
           },
         },
-        "-=.75"
+        "-=0.9"
       );
 
     const tl1 = setTimeout(() => {

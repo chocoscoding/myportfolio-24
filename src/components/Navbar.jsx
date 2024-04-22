@@ -5,7 +5,6 @@ import React, { useRef, useState } from "react";
 import { TbWorld } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
-import Image from "next/image";
 import localFont from "next/font/local";
 import { useGSAP } from "@gsap/react";
 
@@ -13,6 +12,16 @@ const myFont = localFont({
   src: [
     {
       path: "../fonts/ZT/ztravigsfen-alternate.otf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+});
+
+const myFont2 = localFont({
+  src: [
+    {
+      path: "../fonts/ZT/ztravigsfen-regular.otf",
       weight: "400",
       style: "normal",
     },
@@ -126,16 +135,15 @@ const Navbar = () => {
   });
 
   const menuItems = [
-    { label: "Projects", href: "/projects" },
     { label: "Home", href: "/" },
-    { label: "Contact", href: "/contact" },
+    { label: "Projects", href: "/projects" },
   ];
 
   return (
-    <nav className={navOpen ? "navOpen" : ""} ref={navRef}>
+    <nav className={`${navOpen ? "navOpen" : ""} ${myFont2.className}`} ref={navRef}>
       <div className="wrapper">
         <Link href={"/"}>
-          <text className={`chocos ${myFont.className}`}>CHOCOS</text>
+          <p className={`chocos ${myFont.className}`}>CHOCOS</p>
         </Link>
 
         <div className="location">

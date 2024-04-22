@@ -7,6 +7,7 @@ const Scene = () => {
   useGSAP(() => {
     gsap.from(".halo-canvas", {
       opacity: 0,
+      delay: 0.1,
       duration: 1.1,
       ease: "power1.in",
     });
