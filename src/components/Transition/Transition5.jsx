@@ -44,7 +44,7 @@ export default function Transition({ children, setShow }) {
       });
       gsap.to(`.counter_${progress - 1}`, {
         autoAlpha: 1,
-        y: 300,
+        yPercent: 200,
       });
       if (loadingList.length === progress) {
         //end loading animation and show intro
@@ -59,7 +59,7 @@ export default function Transition({ children, setShow }) {
       }
     };
 
-    let text3 = new SplitText(".nicc", { type: "chars" });
+    let text3 = new SplitText(".nickname", { type: "chars" });
 
     let chars3 = text3.chars;
 
@@ -78,7 +78,7 @@ export default function Transition({ children, setShow }) {
           stagger: { each: 0.15, from: "start" },
         }
       )
-      .fromTo(".nicc", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1, color: "#e6dec6" })
+      .fromTo(".nickname", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1, color: "#e6dec6" })
       .to(chars3, {
         onStart: () => {
           chars3[2].classList.add("letter");
@@ -208,7 +208,7 @@ export default function Transition({ children, setShow }) {
             {Array(1)
               .fill(0)
               .map((_, i) => (
-                <p className={`nameSpan nickname nicc`} key={`loading_nickname${i}`}>
+                <p className={`nameSpan nickname`} key={`loading_nickname${i}`}>
                   CHOCOS
                 </p>
               ))}

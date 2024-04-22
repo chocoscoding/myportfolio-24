@@ -35,7 +35,7 @@ const Navbar = () => {
     });
     gsap.from("li", {
       delay: 0.2,
-      x: 190,
+      xPercent: 100,
       ease: "power1.out(2)",
       stagger: 0.04,
     });
@@ -49,6 +49,11 @@ const Navbar = () => {
         //revert color blend
         navRef.current.style.mixBlendMode = "difference";
       },
+    });
+    gsap.to("li", {
+      xPercent: 100,
+      ease: "power1.in",
+      stagger: 0.04,
     });
   });
 
@@ -122,14 +127,12 @@ const Navbar = () => {
 
   const menuItems = [
     { label: "Projects", href: "/projects" },
-    { label: "About", href: "/about" },
+    { label: "Home", href: "/" },
     { label: "Contact", href: "/contact" },
   ];
 
   return (
-    <nav
-      className={navOpen ? "navOpen" : ""}
-      ref={navRef}>
+    <nav className={navOpen ? "navOpen" : ""} ref={navRef}>
       <div className="wrapper">
         <Link href={"/"}>
           <text className={`chocos ${myFont.className}`}>CHOCOS</text>
@@ -143,13 +146,8 @@ const Navbar = () => {
 
         <ul>
           {menuItems.map((item, index) => (
-            <Link
-              key={"navLink" + index}
-              href={item.href}>
-              <li
-                key={"navLi" + index}
-                onMouseLeave={mouseLeaveAnimation}
-                onMouseEnter={mouseEnterAnimation}>
+            <Link key={"navLink" + index} href={item.href}>
+              <li key={"navLi" + index} onMouseLeave={mouseLeaveAnimation} onMouseEnter={mouseEnterAnimation}>
                 <p>{item.label}</p>
                 <p className="secondP">{item.label}</p>
               </li>
@@ -158,10 +156,7 @@ const Navbar = () => {
         </ul>
 
         <hr />
-        <RxHamburgerMenu
-          onClick={toggleNav}
-          className="hamburger"
-        />
+        <RxHamburgerMenu onClick={toggleNav} className="hamburger" />
       </div>
     </nav>
   );

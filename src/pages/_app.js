@@ -20,9 +20,9 @@ export default function App({ Component, pageProps }) {
     <SmoothScrolling>
       <main className={myFont.className}>
 
-        <Image src={`/noise.jpg`} alt="noise bg" className="noise" fill />
-        <Navbar />
+        <Image src={`/noise.jpg`} alt="noise bg" className="noise" fill priority loading="eager" />
         <Transition>
+          <Navbar />
           <div className="childrenWrapper">
             <Component {...pageProps} />
           </div>

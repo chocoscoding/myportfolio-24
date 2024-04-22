@@ -9,16 +9,27 @@ import fragmentShader from "!!raw-loader!./fragmentShader.glsl";
 const Mesh = () => {
   // This reference will give us direct access to the mesh
   const mesh = useRef();
-  const { viewport } = useThree();
-
+  const { size } = useThree();
   const mousePosition = useRef({ x: 0, y: 0 });
-
-  const { size } = useThree(); // Accessing size from useThree hook
 
   useEffect(() => {
     const handleResize = () => {
-      const scale = Math.min(size.width, size.height) / 235; // Adjust the scale factor as needed
-      mesh.current.scale.set(scale, scale, scale);
+      // if (size.width > 1600) {
+      //   const scale = Math.min(size.width, size.height) / 500;
+      //   mesh.current.scale.set(scale, scale, scale);
+      // } else if (size.width <= 1440) {
+      //   const scale = Math.min(size.width, size.height) / 295;
+      //   mesh.current.scale.set(scale, scale, scale);
+      // } else if ((size.width > 360) & (screen.width <= 1048)) {
+      //   console.log("condition ran");
+      //   const scale = Math.min(size.width, size.height) / 225;
+      //   mesh.current.scale.set(scale, scale, scale);
+      // } else {
+      // if (size.width < 501) {
+      //   const scale = Math.min(size.width, size.height) / 135;
+      //   mesh.current.scale.set(scale, scale, scale);
+      // }
+      // }
     };
 
     handleResize(); // Call the resize function initially
