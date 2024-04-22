@@ -44,7 +44,7 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
   position: fixed !important;
   pointer-events: none;
-  opacity: 3% !important;
+  opacity: 3.5% !important;
   z-index: 1000;
 }
 
