@@ -56,14 +56,15 @@ body {
 
 // -----------HOME (/)-----------------
 .HomePage {
-  .topSection {
-    // z-index: -1;
+  z-index: 2;
+  .top_Section {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     height: 100vh;
     padding-top: 3%;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     background-color: #010101;
     .nameText {
       font-size: 2rem;
@@ -71,31 +72,103 @@ body {
       mix-blend-mode: lighten;
       overflow: hidden;
       user-select: none;
-      p {
-        font-size: 21vw;
-        line-height: 0.9;
+      position: absolute;
+      top: 10vh;
+
+      .marquee {
+        display: flex;
+
+        .marquee_inner {
+          font-size: 15vw;
+          line-height: 0.9;
+          display: flex;
+          width: fit-content;
+          flex: auto;
+
+          .marquee_part {
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+            flex-shrink: 0;
+            mix-blend-mode: color;
+
+            .arrow {
+              width: 5vw;
+              height: 1vw;
+              border-radius: 15px 2px 2px 0;
+              background-color: #e6dec6;
+              margin: 0 0.1em;
+              transform: rotate(180deg);
+            }
+          }
+        }
       }
     }
 
-    #top_Text1 {
-      align-self: flex-start;
-      padding-right: 10px;
-      margin-top: 3.5%;
-      margin-left: 10vw;
+    .bottom {
+      position: absolute;
+      bottom: 10%;
+      padding: 0 2.5%;
+      justify-content: space-between;
+      width: 100%;
+      display: flex;
+
+      .left {
+        font-size: 5.5vw;
+        width: fit-content;
+        font-weight: 500;
+        opacity: 90%;
+
+        .occup1,
+        .occup2 {
+          font-size: 5vw;
+          cursor: pointer;
+          padding-left: 5px;
+          padding-right: 5px;
+          display: block;
+          z-index: 100;
+          height: 6vw;
+          overflow: hidden;
+          position: relative;
+
+          .secondP {
+            position: absolute;
+            bottom: -100%;
+          }
+          @media screen and (max-width: 800px) {
+            font-weight: 200;
+            font-size: 2rem;
+          }
+        }
+      }
     }
-    #top_Text2 {
-      align-self: flex-end;
-      margin-right: 10vw;
+    .bottom2 {
+      position: absolute;
+      bottom: 9%;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 5%;
+      opacity: 50%;
+
+      .scroll_icon {
+        font-size: 1.5vw;
+      }
     }
 
     .halo-canvas {
       touch-action: auto !important;
       background-color: transparent !important;
       // height: 100vh !important;
+      z-index: -1;
       position: absolute !important;
-      top: 0;
-      left: 0;
+      bottom: 0;
+      right: 0;
       cursor: pointer;
+      width: 35vw !important;
+      height: 45vh !important;
     }
 
     @media screen and (max-width: 1000px) {
@@ -106,20 +179,22 @@ body {
     }
   }
 
-  //----intro section-----
-  .introSection {
-    // border: 1px solid blue;
-    // overflow: hidden;
+  // ----- about me-----
+
+  .aboutMe {
     margin: auto;
-    width: 75%;
-    margin-bottom: 40%;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    margin-top: 5%;
 
     .introText {
-      margin: 5%;
-      font-size: 2.6rem;
-      line-height: 1.4;
+      margin-top: -7%;
+      font-size: 3vw;
+      line-height: 10vh;
       font-weight: 400;
-      color: #dad6ca23;
+      color: #e6dec6de;
       scale: 0.9;
       // letter-spacing: 5px;
     }
@@ -139,6 +214,7 @@ body {
 }
 
 .transitionChildren {
+  overflow: hidden;
   // visibility: hidden;
 }
 
@@ -157,7 +233,7 @@ body {
   overflow: hidden;
   // background-color: #004923;
   // background-color: #0055297a;
-  background-color: #00ff7b3a;
+  background-color: rgb(9 65 36);
   z-index: 100;
 }
 .nameSpan {
@@ -173,6 +249,7 @@ body {
 }
 
 .first {
+  border: 1px solid red;
   visibility: hidden;
   align-self: center;
   overflow: hidden;
@@ -212,7 +289,6 @@ body {
 
 .nickname {
   position: absolute;
-  // visibility: hidden;
 
   &:nth-child(1) {
     z-index: 12;
@@ -430,3 +506,8 @@ nav {
   }
 }
 // ----------------------------------//
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hideScrollbar {
+  height: 100vh;
+}

@@ -53,6 +53,11 @@ const Mesh = () => {
         type: "v2",
         value: new Vector2(9, 6),
       },
+      iShaderPosition: {
+        // Add this line
+        type: "f",
+        value: 0.01, // Initial position
+      },
     }),
     []
   );
@@ -78,6 +83,9 @@ const Mesh = () => {
 
     mesh.current.material.uniforms.iTime.value = clock.getElapsedTime() * 0.85;
     mesh.current.material.uniforms.iMouse.value = new Vector2(mousePosition.current.x, mousePosition.current.y);
+
+    // mesh.current.position.x += mesh.current.material.uniforms.iShaderPosition.value;
+    // mesh.current.position.set(mousePosition.current.x * 0.5, mousePosition.current.y * 0.5, 0);
   });
 
   return (
@@ -86,8 +94,8 @@ const Mesh = () => {
       onPointerDown={onMouseDown}
       onPointerUp={onMouseUp}
       ref={mesh}
-      position={[0, 0, 0]}
-      scale={3}>
+      position={[1, -0.3, 0]}
+      scale={1.5}>
       <planeGeometry args={[9, 6]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} wireframe={false} />
     </mesh>

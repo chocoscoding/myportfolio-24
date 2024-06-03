@@ -1,12 +1,14 @@
 import gsap from "gsap";
 import SplitText from "gsap/dist/SplitText";
 gsap.registerPlugin(SplitText);
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TbWorld } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { useGSAP } from "@gsap/react";
+import { useStore } from "zustand";
+import LoadingStore from "@/providers/LoadingStore";
 
 const myFont = localFont({
   src: [
@@ -31,7 +33,9 @@ const myFont2 = localFont({
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const navRef = useRef(null);
+  const { pauseOtherAnimations: pauseThisAnimation } = useStore(LoadingStore);
   const { contextSafe } = useGSAP({ scope: navRef.current });
+
   const openNavAnimation = contextSafe(() => {
     gsap.to("ul", {
       x: 0,
@@ -134,10 +138,30 @@ const Navbar = () => {
     });
   });
 
+  const initialAnimation = contextSafe((e) => {
+    const navWrapper = document.querySelector(".wrapper").children;
+    console.log();
+    gsap.from([navWrapper[0], navWrapper[1], navWrapper[2]], {
+      y: -40,
+      // duration: 1,
+      ease: "power1.out(2)",
+      stagger: { each: 0.15, from: "start" },
+    });
+  });
+
   const menuItems = [
     { label: "Home", href: "/" },
     { label: "Projects", href: "/projects" },
   ];
+
+  //-----use effects ---- //
+
+  useEffect(() => {
+    if (!pauseThisAnimation) {
+      initialAnimation();
+    }
+  }, [pauseThisAnimation]);
+  //--------------------------
 
   return (
     <nav className={`${navOpen ? "navOpen" : ""} ${myFont2.className}`} ref={navRef}>

@@ -48,65 +48,139 @@ body::-webkit-scrollbar-thumb {
   z-index: 1000;
 }
 
-.HomePage .topSection {
+.HomePage {
+  z-index: 2;
+}
+.HomePage .top_Section {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding-top: 3%;
   position: relative;
-  overflow: hidden;
   background-color: #010101;
 }
-.HomePage .topSection .nameText {
+.HomePage .top_Section .nameText {
   font-size: 2rem;
   pointer-events: none;
   mix-blend-mode: lighten;
   overflow: hidden;
   user-select: none;
+  position: absolute;
+  top: 10vh;
 }
-.HomePage .topSection .nameText p {
-  font-size: 21vw;
+.HomePage .top_Section .nameText .marquee {
+  display: flex;
+}
+.HomePage .top_Section .nameText .marquee .marquee_inner {
+  font-size: 15vw;
   line-height: 0.9;
+  display: flex;
+  width: fit-content;
+  flex: auto;
 }
-.HomePage .topSection #top_Text1 {
-  align-self: flex-start;
-  padding-right: 10px;
-  margin-top: 3.5%;
-  margin-left: 10vw;
+.HomePage .top_Section .nameText .marquee .marquee_inner .marquee_part {
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  flex-shrink: 0;
+  mix-blend-mode: color;
 }
-.HomePage .topSection #top_Text2 {
-  align-self: flex-end;
-  margin-right: 10vw;
+.HomePage .top_Section .nameText .marquee .marquee_inner .marquee_part .arrow {
+  width: 5vw;
+  height: 1vw;
+  border-radius: 15px 2px 2px 0;
+  background-color: #e6dec6;
+  margin: 0 0.1em;
+  transform: rotate(180deg);
 }
-.HomePage .topSection .halo-canvas {
+.HomePage .top_Section .bottom {
+  position: absolute;
+  bottom: 10%;
+  padding: 0 2.5%;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+}
+.HomePage .top_Section .bottom .left {
+  font-size: 5.5vw;
+  width: fit-content;
+  font-weight: 500;
+  opacity: 90%;
+}
+.HomePage .top_Section .bottom .left .occup1,
+.HomePage .top_Section .bottom .left .occup2 {
+  font-size: 5vw;
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: block;
+  z-index: 100;
+  height: 6vw;
+  overflow: hidden;
+  position: relative;
+}
+.HomePage .top_Section .bottom .left .occup1 .secondP,
+.HomePage .top_Section .bottom .left .occup2 .secondP {
+  position: absolute;
+  bottom: -100%;
+}
+@media screen and (max-width: 800px) {
+  .HomePage .top_Section .bottom .left .occup1,
+  .HomePage .top_Section .bottom .left .occup2 {
+    font-weight: 200;
+    font-size: 2rem;
+  }
+}
+.HomePage .top_Section .bottom2 {
+  position: absolute;
+  bottom: 9%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  opacity: 50%;
+}
+.HomePage .top_Section .bottom2 .scroll_icon {
+  font-size: 1.5vw;
+}
+.HomePage .top_Section .halo-canvas {
   touch-action: auto !important;
   background-color: transparent !important;
+  z-index: -1;
   position: absolute !important;
-  top: 0;
-  left: 0;
+  bottom: 0;
+  right: 0;
   cursor: pointer;
+  width: 35vw !important;
+  height: 45vh !important;
 }
 @media screen and (max-width: 1000px) {
-  .HomePage .topSection {
+  .HomePage .top_Section {
     height: 90vh !important;
   }
 }
 @media screen and (max-width: 500px) {
-  .HomePage .topSection {
+  .HomePage .top_Section {
     height: 65vh !important;
   }
 }
-.HomePage .introSection {
+.HomePage .aboutMe {
   margin: auto;
-  width: 75%;
-  margin-bottom: 40%;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  margin-top: 5%;
 }
-.HomePage .introSection .introText {
-  margin: 5%;
-  font-size: 2.6rem;
-  line-height: 1.4;
+.HomePage .aboutMe .introText {
+  margin-top: -7%;
+  font-size: 3vw;
+  line-height: 10vh;
   font-weight: 400;
-  color: rgba(218, 214, 202, 0.137254902);
+  color: rgba(230, 222, 198, 0.8705882353);
   scale: 0.9;
 }
 
@@ -117,6 +191,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .childrenWrapper {
+  overflow: hidden;
+}
+
+.transitionChildren {
   overflow: hidden;
 }
 
@@ -132,7 +210,7 @@ body::-webkit-scrollbar-thumb {
   top: 0;
   left: 0;
   overflow: hidden;
-  background-color: rgba(0, 255, 123, 0.2274509804);
+  background-color: rgb(9, 65, 36);
   z-index: 100;
 }
 
@@ -150,6 +228,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .first {
+  border: 1px solid red;
   visibility: hidden;
   align-self: center;
   overflow: hidden;
@@ -394,4 +473,9 @@ nav .wrapper hr {
   .hamburger {
     display: block;
   }
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hideScrollbar {
+  height: 100vh;
 }

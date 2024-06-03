@@ -5,6 +5,8 @@ import GSDevTools from "gsap/dist/GSDevTools";
 import { useEffect, useRef, useState } from "react";
 import localFont from "next/font/local";
 import { usePathname } from "next/navigation";
+import { useStore } from "zustand";
+import LoadingStore from "@/providers/LoadingStore";
 gsap.registerPlugin(SplitText, GSDevTools);
 
 const myFont = localFont({
@@ -21,6 +23,7 @@ export default function Transition({ children, setShow }) {
   const loadingList = [0, 22, 40, 66, 80, 100];
   const [isLoading, setIsLoading] = useState(true);
   const loadingSectionRef = useRef(null);
+  const { pauseAnimation, playAnimation } = useStore(LoadingStore);
 
   const textTimeline2 = new gsap.timeline({
     paused: isLoading,
@@ -72,121 +75,56 @@ export default function Transition({ children, setShow }) {
         },
         {
           autoAlpha: 1,
-          duration: 1.35,
+          duration: 1.4,
           y: 10,
           ease: "back.out(2)",
           stagger: { each: 0.15, from: "start" },
         }
       )
-      .fromTo(".nickname", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1, color: "#e6dec6" })
+      .fromTo(".nickname", { color: "transparent" }, { delay: 0.15, ease: "power1.in", duration: 1.1, color: "#e6dec6" })
       .to(chars3, {
+        yPercent: 200,
+        autoAlpha: 1,
+        duration: 1.1,
+        ease: "power1.in(2)",
+        stagger: { each: 0.02, from: "center" },
+      })
+
+      .to(loadingSectionRef.current, {
+        delay: -0.15,
+        yPercent: 200,
+        duration: 2.8,
+        ease: "power1.out(3)",
         onStart: () => {
-          chars3[2].classList.add("letter");
-          chars3.forEach((ele, i) => (i === 2 ? null : (ele.style.zIndex = -1)));
+          playAnimation();
         },
-        scale: 0.8,
-        // margin: "2%",
-        delay: "0.2",
-        duration: 1.25,
-        each: "power1.in",
-      })
-      .to(chars3[0], {
-        xPercent: 200,
-        duration: 1,
-        opacity: 0,
-        ease: "power1.in(2)",
-      })
-      .to(
-        chars3[5],
-        {
-          xPercent: -367.5,
-          duration: 1,
-          opacity: 0,
-          ease: "power1.in(2)",
+        onComplete: () => {
+          setShow("show");
+          document.querySelector(".loadingSection").remove();
         },
-        "<"
-      )
-      .to(
-        chars3[1],
-        {
-          xPercent: 100,
-          duration: 0.75,
-          opacity: 0,
-          ease: "power1.in(2)",
-        },
-        "-=.5"
-      )
-      .to(
-        chars3[4],
-        {
-          xPercent: -150.25,
-          duration: 0.75,
-          opacity: 0,
-          ease: "power1.in(2)",
-        },
-        "<"
-      )
-      .to(
-        chars3[2],
-        {
-          xPercent: 40,
-          duration: 0.7,
-          ease: "power1.in(2)",
-        },
-        "-=.5"
-      )
-      .to(
-        chars3[3],
-        {
-          xPercent: -80,
-          duration: 0.7,
-          opacity: 0,
-          ease: "power1.in(2)",
-        },
-        "<"
-      )
-      .to(chars3[2], {
-        delay: 0.08,
-        zIndex: 13,
-        scale: "53vw 53vh",
-        duration: 1.5,
-        ease: "power1.in(2)",
-      })
-      .to(
-        ".loadingSection",
-        {
-          opacity: 0,
-          onStart: () => {
-            setShow("show");
-          },
-          onComplete: () => {
-            document.querySelector(".loadingSection").remove();
-          },
-        },
-        "-=0.9"
-      );
+      });
 
     const tl1 = setTimeout(() => {
       LoadProgress(0);
-    }, 1000);
+    }, 100);
     const tl2 = setTimeout(() => {
       LoadProgress(1);
-    }, 2000);
+    }, 200);
     const tl3 = setTimeout(() => {
       LoadProgress(2);
-    }, 3000);
+    }, 300);
     const tl4 = setTimeout(() => {
       LoadProgress(3);
-    }, 4000);
+    }, 400);
     const tl5 = setTimeout(() => {
       LoadProgress(4);
-    }, 5000);
+    }, 500);
     const tl6 = setTimeout(() => {
       LoadProgress(5);
-    }, 6000);
+    }, 600);
     const tl7 = setTimeout(() => {
       LoadProgress(6);
-    }, 7000);
+    }, 700);
 
     return () => {
       clearTimeout(tl1);
@@ -201,7 +139,7 @@ export default function Transition({ children, setShow }) {
 
   return (
     <>
-      <div className={myFont.className}>
+      <div className={myFont.className} style={{ overflow: "hidden" }}>
         <section className="loadingSection" ref={loadingSectionRef}>
           <div className="first">
             {Array(1)

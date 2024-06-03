@@ -8,7 +8,7 @@ const Index = ({ children }) => {
   return (
     <>
       <Transition5 setShow={setShow} />
-      <div className="transitionChildren">{show === "show" ? <>{children}</> : null}</div>
+      <div className={`transitionChildren ${show === "hide" ? "hideScrollbar" : ""}`}>{children}</div>{" "}
     </>
   );
 };
