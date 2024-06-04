@@ -4,7 +4,6 @@ import Transition from "@/components/Transition";
 import "@/styles/globals.css";
 import localFont from 'next/font/local';
 import Image from "next/image";
-import FluidDistortion from '@/components/3d/FluidDistortion';
 import { Lato } from 'next/font/google';
 
 const lato = Lato({ weight: ['100', '300', '400', '700', '900'], subsets: ['latin'] });
@@ -18,7 +17,6 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       <SmoothScrolling>
-        {/* <FluidDistortion /> */}
         <Image src={`/noise.webp`} alt="noise bg" className="noise" fill priority loading="eager" />
         <Transition>
           <>

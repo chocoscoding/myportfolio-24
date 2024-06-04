@@ -96,7 +96,7 @@ export default function Home() {
           start: "top+=25% top",
           end: "bottom center-=5%",
           scrub: true,
-          // markers: true,
+          markers: true,
         },
         defaults: {
           ease: "power1.in",
@@ -105,8 +105,8 @@ export default function Home() {
       });
 
       topSectionScrollTrigger.to(".top_Section", {
-        scale: 0.85,
-        opacity: 0.5,
+        scale: 0.8,
+        opacity: 0.35,
       });
 
       const scrollYoyo = gsap.timeline({});
